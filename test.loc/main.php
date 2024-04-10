@@ -13,6 +13,13 @@ if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$klass = $_POST['klass'];
+
+echo $firstname;
+echo $lastname;
+echo $klass;
 
 
 $pyt_id = array();
@@ -97,10 +104,75 @@ for ($i = 1; $i <= 20; $i++) {
 }
 
 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
+
+    $firstname;
+    $lastname;
+    $klass;
+
+
+    $q1 = isset($_POST['q1']) ? $_POST['q1'] : '';
+    $q2 = isset($_POST['q2']) ? $_POST['q2'] : '';
+    $q3 = isset($_POST['q3']) ? $_POST['q3'] : '';
+    $q4 = isset($_POST['q4']) ? $_POST['q4'] : '';
+    $q5 = isset($_POST['q5']) ? $_POST['q5'] : '';
+    $q6 = isset($_POST['q6']) ? $_POST['q6'] : '';
+    $q7 = isset($_POST['q7']) ? $_POST['q7'] : '';
+    $q8 = isset($_POST['q8']) ? $_POST['q8'] : '';
+    $q9 = isset($_POST['q9']) ? $_POST['q9'] : '';
+    $q10 = isset($_POST['q10']) ? $_POST['q10'] : '';
+
+    
+
+   $score = 0;
+
+   if ($q1 == $odpowiedz_id["odpowiedz_id$randomNumbers[0]"]){
+        $score++;
+   }
+
+   if ($q2 == $odpowiedz_id["odpowiedz_id$randomNumbers[1]"]){
+        $score++;
+   }
+
+   if ($q3 == $odpowiedz_id["odpowiedz_id$randomNumbers[2]"]){
+        $score++;
+   }
+
+   if ($q4 == $odpowiedz_id["odpowiedz_id$randomNumbers[3]"]){
+        $score++;
+   }
+
+   if ($q5 == $odpowiedz_id["odpowiedz_id$randomNumbers[4]"]){
+        $score++;
+   }
+
+   if ($q6 == $odpowiedz_id["odpowiedz_id$randomNumbers[5]"]){
+       $score++;
+   }
+
+   if ($q7 == $odpowiedz_id["odpowiedz_id$randomNumbers[6]"]){
+       $score++;
+   }
+
+   if ($q8 == $odpowiedz_id["odpowiedz_id$randomNumbers[7]"]){
+        $score++;
+   }
+
+   if ($q9 == $odpowiedz_id["odpowiedz_id$randomNumbers[8]"]){
+       $score++;
+   }
+
+   if ($q10 == $odpowiedz_id["odpowiedz_id$randomNumbers[9]"]){
+       $score++;
+   }
+
+
+
+   header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
+   exit();
+}
 ?>
-
-
-
 
 
 
@@ -219,79 +291,6 @@ for ($i = 1; $i <= 20; $i++) {
     
 
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
-
-    $firstname = isset($_POST["firstname"]) ? $_POST["firstname"] : '';
-    $lastname = isset($_POST["lastname"]) ? $_POST["lastname"] : '';
-    $klass = isset($_POST["klass"]) ? $_POST["klass"] : '';
-
-
-    $q1 = isset($_POST['q1']) ? $_POST['q1'] : '';
-    $q2 = isset($_POST['q2']) ? $_POST['q2'] : '';
-    $q3 = isset($_POST['q3']) ? $_POST['q3'] : '';
-    $q4 = isset($_POST['q4']) ? $_POST['q4'] : '';
-    $q5 = isset($_POST['q5']) ? $_POST['q5'] : '';
-    $q6 = isset($_POST['q6']) ? $_POST['q6'] : '';
-    $q7 = isset($_POST['q7']) ? $_POST['q7'] : '';
-    $q8 = isset($_POST['q8']) ? $_POST['q8'] : '';
-    $q9 = isset($_POST['q9']) ? $_POST['q9'] : '';
-    $q10 = isset($_POST['q10']) ? $_POST['q10'] : '';
-
-    
-
-   $score = 0;
-
-   if ($q1 == $odpowiedz_id["odpowiedz_id$randomNumbers[0]"]){
-        $score++;
-   }
-
-   if ($q2 == $odpowiedz_id["odpowiedz_id$randomNumbers[1]"]){
-        $score++;
-   }
-
-   if ($q3 == $odpowiedz_id["odpowiedz_id$randomNumbers[2]"]){
-        $score++;
-   }
-
-   if ($q4 == $odpowiedz_id["odpowiedz_id$randomNumbers[3]"]){
-        $score++;
-   }
-
-   if ($q5 == $odpowiedz_id["odpowiedz_id$randomNumbers[4]"]){
-        $score++;
-   }
-
-   if ($q6 == $odpowiedz_id["odpowiedz_id$randomNumbers[5]"]){
-       $score++;
-   }
-
-   if ($q7 == $odpowiedz_id["odpowiedz_id$randomNumbers[6]"]){
-       $score++;
-   }
-
-   if ($q8 == $odpowiedz_id["odpowiedz_id$randomNumbers[7]"]){
-        $score++;
-   }
-
-   if ($q9 == $odpowiedz_id["odpowiedz_id$randomNumbers[8]"]){
-       $score++;
-   }
-
-   if ($q10 == $odpowiedz_id["odpowiedz_id$randomNumbers[9]"]){
-       $score++;
-   }
-
-
-
-   $sql = "INSERT INTO resultat (Name, Lastname, klass, resultat) VALUES ('$firstname', '$lastname', '$klass', '$score')";
-header("Location:resultat.php?score=$score");
-exit();
-
-}
-
-?>
 
 </html>
 </body>
-    
