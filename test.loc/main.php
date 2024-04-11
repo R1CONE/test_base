@@ -22,6 +22,9 @@ echo $lastname;
 echo $klass;
 
 
+
+
+
 $pyt_id = array();
 
 $randomNumbers = [];
@@ -103,13 +106,11 @@ for ($i = 1; $i <= 20; $i++) {
     }
 }
 
-
+// && isset($_POST['myButton'])
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
 
-    $firstname;
-    $lastname;
-    $klass;
+
 
 
     $q1 = isset($_POST['q1']) ? $_POST['q1'] : '';
@@ -167,7 +168,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
        $score++;
    }
 
-
+   $firstname;
+   $lastname;
+   $klass;
 
    header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
    exit();
@@ -294,3 +297,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
 
 </html>
 </body>
+
