@@ -1,4 +1,3 @@
-
 <?php
 
 
@@ -12,6 +11,10 @@ $conn = new mysqli($servername, $username, $dbPassword, $database);
 if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
+
+global $firstname;
+global $lastname;
+global $klass;
 
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
@@ -168,11 +171,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
        $score++;
    }
 
-   $firstname;
-   $lastname;
-   $klass;
+   global $firstname;
+   global $lastname;
+   global $klass;
 
-   header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
+
+header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
+
    exit();
 }
 ?>
@@ -283,6 +288,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
                 <input type="radio" name="q10" value="c"> <?php echo $var3_id["var3_id$randomNumbers[10]"]; ?><br>
            </div>
 
+           <input type="hidden" name="firstname" value="<?php echo $firstname; ?>">
+            <input type="hidden" name="lastname" value="<?php echo $lastname; ?>">
+            <input type="hidden" name="klass" value="<?php echo $klass; ?>">
+
            
             <input type="submit" name="myButton" value="Sprawdź odpowiedzi, powodzenia:3">
         </form>
@@ -297,4 +306,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
 
 </html>
 </body>
+
 
