@@ -171,15 +171,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
        $score++;
    }
 
-$bytes_klass = mb_strlen($klass, '8bit');
-$bytes_score = mb_strlen($score, '8bit');
+   error_reporting(0);
 
+   $secretKey = 'R1CONE';
 
    // Генерация хеш-значений
-   $encrypted_firstname = openssl_encrypt($firstname, 'AES-256-CBC', 'R1C-158', 0);
-   $encrypted_lastname = openssl_encrypt($lastname, 'AES-256-CBC', 'R1C-158', 0);
-   $encrypted_klass = openssl_encrypt($klass, 'AES-256-CBC', 'R1C-158', $bytes_klass);
-   $encrypted_score = openssl_encrypt($score, 'AES-256-CBC', 'R1C-158', 0, $bytes_score);
+   $encrypted_firstname = openssl_encrypt($firstname, 'AES-256-CBC', $secretKey, 0, $secretKey);
+   $encrypted_lastname = openssl_encrypt($lastname, 'AES-256-CBC', $secretKey, 0, $secretKey);
+   $encrypted_klass = openssl_encrypt($klass, 'AES-256-CBC', $secretKey, 0, str_repeat("\0", 16));
+   $encrypted_score = openssl_encrypt($score, 'AES-256-CBC', $secretKey, 0, $secretKey);
    
    // Передача зашифрованных значений через URL
    header("Location:resultat.php?score=$encrypted_score&firstname=$encrypted_firstname&lastname=$encrypted_lastname&klass=$encrypted_klass");
@@ -312,7 +312,3 @@ $bytes_score = mb_strlen($score, '8bit');
 
 </html>
 </body>
-
-
-
-
