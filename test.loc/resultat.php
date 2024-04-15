@@ -13,7 +13,8 @@ if(isset($_GET['score']) && isset($_GET['firstname']) && isset($_GET['lastname']
         die("Błąd połączenia: " . $conn->connect_error);
     }
 
-
+    ini_set('display_errors', 0);
+    
     $secretKey = 'R1CONE';
 
     $encrypted_score = $_GET['score'];
