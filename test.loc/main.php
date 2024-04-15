@@ -171,12 +171,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
        $score++;
    }
 
-   global $firstname;
-   global $lastname;
-   global $klass;
+   //$a = '1p';
+$bytes = mb_strlen($a, '8bit');
+echo $bytes;
 
-
-header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
+   // Генерация хеш-значений
+   $encrypted_firstname = openssl_encrypt($firstname, 'AES-256-CBC', 'R1C-158', 0);
+   $encrypted_lastname = openssl_encrypt($lastname, 'AES-256-CBC', 'R1C-158', 0);
+   $encrypted_klass = openssl_encrypt($klass, 'AES-256-CBC', 'R1C-158', 0);
+   $encrypted_score = openssl_encrypt($score, 'AES-256-CBC', 'R1C-158', 0, );
+   
+   // Передача зашифрованных значений через URL
+   header("Location:resultat.php?score=$encrypted_score&firstname=$encrypted_firstname&lastname=$encrypted_lastname&klass=$encrypted_klass");
 
    exit();
 }
@@ -306,5 +312,7 @@ header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastna
 
 </html>
 </body>
+
+
 
 
