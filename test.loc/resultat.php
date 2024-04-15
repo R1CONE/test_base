@@ -12,10 +12,16 @@ if (isset($_GET['score'])) {
         die("Błąd połączenia: " . $conn->connect_error);
     }
 
-    $score = $_GET['score'];
-    $firstname = $_GET['firstname'];
-    $lastname = $_GET['lastname'];
-    $klass = $_GET['klass'];
+    $encrypted_score = $_GET['score'];
+    $encrypted_firstname = $_GET['firstname'];
+    $encrypted_lastname = $_GET['lastname'];
+    $encrypted_klass = $_GET['klass'];
+
+    $firstname = openssl_decrypt($encrypted_firstname, 'AES-256-CBC', 'R1C-158', 0);
+$lastname = openssl_decrypt($encrypted_lastname, 'AES-256-CBC', 'R1C-158', 0);
+$klass = openssl_decrypt($encrypted_klass, 'AES-256-CBC', 'R1C-158', 0);
+$score = openssl_decrypt($encrypted_klass, 'AES-256-CBC', 'R1C-158', 0);
+
 
 
     echo "Score: $score / 10 <br>";
