@@ -1,5 +1,6 @@
 <?php
-if (isset($_GET['score'])) {
+
+if(isset($_GET['score']) && isset($_GET['firstname']) && isset($_GET['lastname']) && isset($_GET['klass'])) {
 
     $servername = "localhost";
     $username = "root";
@@ -12,15 +13,18 @@ if (isset($_GET['score'])) {
         die("Błąd połączenia: " . $conn->connect_error);
     }
 
+
+    $secretKey = 'R1CONE';
+
     $encrypted_score = $_GET['score'];
     $encrypted_firstname = $_GET['firstname'];
     $encrypted_lastname = $_GET['lastname'];
     $encrypted_klass = $_GET['klass'];
 
-    $firstname = openssl_decrypt($encrypted_firstname, 'AES-256-CBC', 'R1C-158', 0);
-$lastname = openssl_decrypt($encrypted_lastname, 'AES-256-CBC', 'R1C-158', 0);
-$klass = openssl_decrypt($encrypted_klass, 'AES-256-CBC', 'R1C-158', 0);
-$score = openssl_decrypt($encrypted_klass, 'AES-256-CBC', 'R1C-158', 0);
+    $firstname = openssl_decrypt($encrypted_firstname, 'AES-256-CBC', $secretKey, 0, $secretKey);
+    $lastname = openssl_decrypt($encrypted_lastname, 'AES-256-CBC', $secretKey, 0, $secretKey);
+    $klass = openssl_decrypt($encrypted_klass, 'AES-256-CBC', $secretKey, 0, str_repeat("\0", 16));
+    $score = openssl_decrypt($encrypted_score, 'AES-256-CBC', $secretKey, 0, $secretKey);
 
 
 
