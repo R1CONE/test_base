@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sty 09, 2024 at 09:31 AM
+-- Generation Time: Apr 16, 2024 at 08:19 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -77,17 +77,6 @@ CREATE TABLE `resultat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `resultat`
---
-
-INSERT INTO `resultat` (`Name`, `Lastname`, `resultat`, `klass`, `id`) VALUES
-('', '', 9, '', 1),
-('', '', 7, '', 2),
-('', '', 2, '', 3),
-('', '', 6, '', 4),
-('', '', 6, '', 5);
-
---
 -- Indeksy dla zrzutów tabel
 --
 
@@ -117,7 +106,7 @@ ALTER TABLE `pyt_otp`
 -- AUTO_INCREMENT for table `resultat`
 --
 ALTER TABLE `resultat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
