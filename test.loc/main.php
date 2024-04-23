@@ -128,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
     $q10 = isset($_POST['q10']) ? $_POST['q10'] : '';
 
     
-
    $score = 0;
 
    if ($q1 == $odpowiedz_id["odpowiedz_id$randomNumbers[0]"]){
@@ -171,18 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
        $score++;
    }
 
-   error_reporting(0);
 
-   $secretKey = 'R1CONE';
-
-   // Генерация хеш-значений
-   $encrypted_firstname = openssl_encrypt($firstname, 'AES-256-CBC', $secretKey, 0, $secretKey);
-   $encrypted_lastname = openssl_encrypt($lastname, 'AES-256-CBC', $secretKey, 0, $secretKey);
-   $encrypted_klass = openssl_encrypt($klass, 'AES-256-CBC', $secretKey, 0, str_repeat("\0", 16));
-   $encrypted_score = openssl_encrypt($score, 'AES-256-CBC', $secretKey, 0, $secretKey);
-   
-   // Передача зашифрованных значений через URL
-   header("Location:resultat.php?score=$encrypted_score&firstname=$encrypted_firstname&lastname=$encrypted_lastname&klass=$encrypted_klass");
+   header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
 
    exit();
 }
