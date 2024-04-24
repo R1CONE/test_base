@@ -1,5 +1,12 @@
 <?php
 
+function encrypt($data, $password) {
+    $iv_length = openssl_cipher_iv_length($cipher="AES-256-CBC");
+    $iv = openssl_random_pseudo_bytes($iv_length);
+    $encrypted = openssl_encrypt($data, $cipher, $password, $options=0, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
 
 $servername = "localhost";
 $username = "root";
@@ -12,9 +19,9 @@ if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
-global $firstname;
-global $lastname;
-global $klass;
+$firstname;
+$lastname;
+$klass;
 
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
@@ -171,7 +178,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['myButton'])) {
    }
 
 
-   header("Location:resultat.php?score=$score&firstname=$firstname&lastname=$lastname&klass=$klass");
+   $password = "R1CONE";
+
+   $encrypted_firstname = encrypt($firstname, $password);
+   $encrypted_lastname = encrypt($lastname, $password);
+   $encrypted_klass = encrypt($klass, $password);
+   $encrypted_score = encrypt($score, $password);
+
+   header("Location:resultat.php?score=$encrypted_score&firstname=$encrypted_firstname&lastname=$encrypted_lastname&klass=$encrypted_klass");
 
    exit();
 }
